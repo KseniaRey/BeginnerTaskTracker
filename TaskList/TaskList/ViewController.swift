@@ -9,10 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView! // строка означает, что ты создаешь ссылку на таблицу (интерфейсный элемент), которая будет подключена через IBOutlet и может быть опциональной, но Swift будет ожидать, что она будет инициализирована в какой-то момент.
-    /*
-     UITableView!: Восклицательный знак в конце типа UITableView! указывает на то, что переменная может быть optional, но она автоматически будет развернута (unwrapped). Это значит, что Swift ожидает, что объект tableView будет обязательно инициализирован в какой-то момент, но на момент объявления он может быть nil. То есть ты можешь работать с этим объектом, но если он окажется nil в какой-то момент, то программа может аварийно завершиться с ошибкой.
-     */
+    @IBOutlet var tableView: UITableView! 
     
     // array to hold all the tasks that user had entered that far
     var tasks = [String]()
@@ -84,12 +81,10 @@ extension ViewController: UITableViewDataSource{
         return tasks.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) // Вот тут идетнификатор cell потому что в main.storyboard мы дали ей этот идентификатор
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         
         cell.textLabel?.text = tasks[indexPath.row]
-        /*
-         ? (Optional Chaining) — этот вопросительный знак указывает на использование optional chaining. То есть, свойство textLabel может быть nil (например, если по какой-то причине оно не было инициализировано). Если textLabel не nil, то будет выполнено присваивание текста. Если оно равно nil, то ничего не произойдет, и приложение не упадет с ошибкой.
-         */
+       
         
         return cell
     }
